@@ -59,4 +59,8 @@ In this architecture, we have three main layers:
   - **Multi-AZ Setup**: Ensures high availability and fault tolerance by replicating data across multiple availability zones.
   - **Data Retrieval and Manipulation**: Handles queries and transactions from the application tier to manage the data.
 
+### Additional Components
+#### Load Balancing, Health Checks, Auto Scaling Groups, AWS Certificate Manager (ACM), Amazon Route 53.
 
+### Summary
+This architecture ensures high availability, scalability, and reliability by distributing the load, monitoring instance health, and scaling resources dynamically. The web tier serves the front-end and routes API calls, the application tier handles business logic and interacts with the database, and the database tier provides robust data storage and retrieval.

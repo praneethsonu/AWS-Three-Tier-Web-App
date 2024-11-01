@@ -52,7 +52,7 @@ In this architecture, we have three main layers:
   - **Database Interaction**: Interacts with the Aurora MySQL database to fetch or update data.
   - **Returning Responses**: Sends the processed data back to the web tier via the internal load balancer.
 
-#### 5. Database Tier (Aurora MySQL Multi-AZ Database)
+#### 5. Database Tier (MySQL Database)
 - **Role**: Provides reliable and scalable data storage.
 - **Functionality**:
   - **Data Storage**: Stores all the application data in a structured format.

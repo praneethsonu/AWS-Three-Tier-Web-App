@@ -12,13 +12,14 @@ This project is a hands-on walkthrough of a three-tier web architecture in AWS. 
 
 <img width="4176" alt="3TierArch" src="https://github.com/user-attachments/assets/8ea462dc-281a-4bfe-a092-52695ec5fec0">
 
+
 In this architecture, we have three main layers:
 
-**Web Tier**: Handles client requests and serves the front-end website.
+**1. Web Tier**: Handles client requests and serves the front-end website.
 
-**Application Tier**: Processes API requests and handles the business logic.
+**2. Application Tier**: Processes API requests and handles the business logic.
 
-**Database Tier**: Manages data storage and retrieval.
+**3. Database Tier**: Manages data storage and retrieval.
 
 ### Components explanation
 

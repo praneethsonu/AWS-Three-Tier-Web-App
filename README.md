@@ -12,6 +12,7 @@ This project is a hands-on walkthrough of a three-tier web architecture in AWS. 
 
 <img width="4176" alt="3TierArch" src="https://github.com/user-attachments/assets/8ea462dc-281a-4bfe-a092-52695ec5fec0">
 
+
 In this architecture, a public-facing Application Load Balancer forwards client traffic to our web-tier EC2 instances. The web tier is running Nginx webservers that are configured to serve a React.js website and redirect our API calls to the application tier’s internal facing load balancer. The internal facing load balancer then forwards that traffic to the application tier, which is written in Node.js. The application tier manipulates data in an Aurora MySQL multi-AZ database and returns it to our web tier. Load balancing, health checks, and autoscaling groups are created at each layer to maintain the availability of this architecture.
 
 ### Additional Components

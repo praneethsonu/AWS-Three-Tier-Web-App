@@ -15,19 +15,14 @@ This project is a hands-on walkthrough of a three-tier web architecture in AWS. 
 In this architecture, we have three main layers:
 
 **Web Tier**: Handles client requests and serves the front-end website.
+
 **Application Tier**: Processes API requests and handles the business logic.
+
 **Database Tier**: Manages data storage and retrieval.
 
 ### Components explanation
 
-#### 1. External Load Balancer (Public-Facing Application Load Balancer)
-- **Role**: This acts as the entry point for all client traffic.
-- **Functionality**:
-  - Distributes incoming client requests to the web tier EC2 instances.
-  - Ensures even distribution of traffic for better performance and reliability.
-  - Performs health checks to ensure only healthy instances receive traffic.
-
-#### 2. Web Tier
+#### 1. Web Tier
 - **Role**: Serves the front-end of the application and redirects API calls.
 - **Components**:
   - **Nginx Webservers**: Running on EC2 instances.
@@ -36,14 +31,7 @@ In this architecture, we have three main layers:
   - **Serving the Website**: Nginx serves the static files for the React.js application to the clients.
   - **Redirecting API Calls**: Nginx is configured to route API requests to the internal-facing load balancer of the application tier.
 
-#### 3. Internal Load Balancer (Application Tier Load Balancer)
-- **Role**: Manages traffic between the web tier and the application tier.
-- **Functionality**:
-  - Receives API requests from the web tier.
-  - Distributes these requests to the appropriate EC2 instances in the application tier.
-  - Ensures high availability and load balancing within the application tier.
-
-#### 4. Application Tier
+#### 2. Application Tier
 - **Role**: Handles the application logic and processes API requests.
 - **Components**:
   - **Node.js Application**: Running on EC2 instances.
@@ -52,7 +40,7 @@ In this architecture, we have three main layers:
   - **Database Interaction**: Interacts with the Aurora MySQL database to fetch or update data.
   - **Returning Responses**: Sends the processed data back to the web tier via the internal load balancer.
 
-#### 5. Database Tier (MySQL Database)
+#### 2. Database Tier (MySQL Database)
 - **Role**: Provides reliable and scalable data storage.
 - **Functionality**:
   - **Data Storage**: Stores all the application data in a structured format.

@@ -1,104 +1,24 @@
-<img src="https://cdn.prod.website-files.com/677c400686e724409a5a7409/6790ad949cf622dc8dcd9fe4_nextwork-logo-leather.svg" alt="NextWork" width="300" />
+## AWS Three-Tier Web Architecture
 
-# P4 - Build a Three-Tier Web App
+## Description:
+This project is a hands-on walkthrough of a three-tier web architecture in AWS. We will be manually creating the necessary network, security, app, and database components and configurations in order to run this architecture in an available and scalable manner.
 
-**Project Link:** [View Project](http://learn.nextwork.org/projects/aws-compute-threetier)
+## Tier Architecture explanation:
+- **Web Server**: This is the front part of a web application that displays the website to users. It handles how the site looks and interacts with users, like showing product pages or allowing people to sign up.
 
-**Author:** Praneeth Bhandwalkar  
-**Email:** praneeth2003bhandwalkar2.0@gmail.com
+- **Application Server**: This middle part manages the business logic and processes user actions. For example, it checks the inventory to see if a product is in stock or updates a user's account details.
 
----
+- **Database Server**: This is the back-end part that stores all the data for the application. It uses databases like MySQL or PostgreSQL to keep track of information.
+## Architecture Overview:
 
-## Build a Three-Tier Web App
+<img width="4176" alt="3TierArch" src="https://github.com/user-attachments/assets/8ea462dc-281a-4bfe-a092-52695ec5fec0">
 
-![Image](http://learn.nextwork.org/thankful_azure_innocent_oriental_melon/uploads/aws-compute-threetier_2b3c4d5e)
 
----
+In this architecture, a public-facing Application Load Balancer forwards client traffic to our web-tier EC2 instances. The web tier is running Nginx web servers that are configured to serve a React.js website and redirect our API calls to the application tier’s internal facing load balancer. The internal facing load balancer then forwards that traffic to the application tier, which is written in Node.js. The application tier manipulates data in an Aurora MySQL multi-AZ database and returns it to our web tier. Load balancing, health checks, and autoscaling groups are created at each layer to maintain the availability of this architecture.
 
-## Introducing Today's Project!
+## Getting Started
 
-In this project, I will demonstrate the three-tier web application. I'm doing this project to learn about the three tier and how they manage and scale the application.
+Follow the instructions in the [Get Started](https://github.com/praneethsonu/AWS-Three-Tier-Web-App/tree/main/Get%20Started) directory to set up and deploy the infrastructure.
 
-### Tools and concepts
-
-Services I used were Amazon S3, Amazon CloudFront, AWS Lambda, Amazon API Gateway, and Amazon DynamoDB. Key concepts I learnt include Lambda functions, which are a core part of allowing code to run in response to events without the need for a server.
-
-### Project reflection
-
-This project took me approximately 160 minutes to complete the project.
-
-Through this project, I gained practical insights into the challenges of maintaining separation of concerns and ensuring smooth integration between the three layers and build a three-tier architecture.
-
----
-
-## Presentation tier
-
-For the presentation tier, I will set up an S3 bucket to store website files and upload a simple "index.html" file into the S3 bucket then set up CloudFront because it is used to deliver the website's content globally.
-
-After uploading website files into the S3 bucket, I accessed my delivered website using the CloudFront distribution domain name.
-
-![Image](http://learn.nextwork.org/thankful_azure_innocent_oriental_melon/uploads/aws-compute-threetier_3a4b5c6d)
-
----
-
-## Logic tier
-
-For the logic tier, I will set up the Lambda function and API Gateway because the Lambda function retrieves user data from the DynamoDB table and to access it I use an API Gateway to handle requests and route them to the right place.
-
-The Lambda function retrieves data by executing code in response to events and integrating with various data sources, such as databases and APIs.
-
-![Image](http://learn.nextwork.org/thankful_azure_innocent_oriental_melon/uploads/aws-compute-threetier_6a7b8c9d)
-
----
-
-## Data tier
-
-For the data tier, I will set up to create a DynamoDB table and add user data into the table because I need DynamoDB to store some user data.
-
-The partition key for my DynamoDB table is essential for organizing data efficiently, which means it helps in distributing data across multiple servers for quick access and efficient querying.
-
-![Image](http://learn.nextwork.org/thankful_azure_innocent_oriental_melon/uploads/aws-compute-threetier_u1v2w3x4)
-
----
-
-## Logic and Data tier
-
-Once all three layers of the three-tier architecture are set up, the next step is to update the "script.js" file with the API request and verify the data to display the returned data.
-
-To test my API, I checked the Invoke URL of my prod stage API. This allowed me to determine whether I could use the API to retrieve user data. The results were shown as user data with the logic and data tier's integration
-
-![Image](http://learn.nextwork.org/thankful_azure_innocent_oriental_melon/uploads/aws-compute-threetier_a112c3d5)
-
----
-
-## Console Errors
-
-The error in my distributed site was referencing a URL [YOUR-PROD-API-URL]/users?userId=1 because this URL is in line 9 of our script.js file.
-
-To resolve the error, I updated script.js by replacing [YOUR-PROD-API-URL] in the script. I then reuploaded it into S3 because it will act as an integration for the logic tier and presentation tier.
-
-I ran into a second error after updating script.js. This was an error with CORS (Cross-Origin Resource Sharing) is like a security bouncer for your browser. . because the API Gateway is not configured to allow requests from your CloudFront URL.
-
-![Image](http://learn.nextwork.org/thankful_azure_innocent_oriental_melon/uploads/aws-compute-threetier_a1b2c3d5)
-
----
-
-## Resolving CORS Errors
-
-To resolve the CORS error, I first went to API Gateway navigated to the Resources tab selected users, and then Enabled the CORS with configuration GET and OPTIONS.
-
-I also updated my Lambda function because of the CORS headers addition. The changes I made were to replace * with your CloudFront domain name. Keeping Access-Control-Allow-Origin means you're allowing everyone to use your API.
-
-![Image](http://learn.nextwork.org/thankful_azure_innocent_oriental_melon/uploads/aws-compute-threetier_1qthryj2)
-
----
-
-## Fixed Solution
-
-I verified the fixed connection between API Gateway and CloudFront by Deploying the API by enabling CORS
-
-![Image](http://learn.nextwork.org/thankful_azure_innocent_oriental_melon/uploads/aws-compute-threetier_2b3c4d5e)
-
----
-
----
+## Summary
+This architecture ensures high availability, scalability, and reliability by distributing the load, monitoring instance health, and scaling resources dynamically. The web tier serves the front end and routes API calls, the application tier handles business logic and interacts with the database, and the database tier provides robust data storage and retrieval.
